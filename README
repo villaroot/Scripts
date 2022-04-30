@@ -1,0 +1,29 @@
+filterIPs.py is used for checking if an IP is In Scope and not in the Excluded IP List.
+It can take CIDR IPs and expands them to the full IP list. Meaning it's possible to provide a value such as
+192.0.0.0/24 and the script will expand it to all IPs in the /24 subnet.
+
+There are two options to provide the In Scope and Excluded IPs.
+1. provide with parameters
+    -x Excluded IP file
+    -i In Scope IP file
+    Usage: filterIPs.py -x <ExcludedIPsFile> -i <inScopeIPsFile>
+
+2. Manually input the location into the script's code. This is best if you don't want to
+  keep passing the parameters. Manually put the location in the variables: manualInScopeLocation and manualExcludeLocation
+  Make sure to put quotes around the location and put double slashes in the path.
+  For example instead of: manualInScopeLocation = "c:\location.txt"
+  do: manualInScopeLocation = "c:\\location.txt"
+
+
+HELP
+filterIPs.py
+  -x Excluded IPs file
+  -i In Scope IPs file
+  -s single IP to check
+  -f file of IPs to check
+
+  Usage: python3 filterIPs.py [-x FILE] [-i FILE] [-s STRING] [-f FILE]
+  Example:
+    python3 filterIPs.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -s 10.10.10.10
+
+    python3 filterIPs.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -f 'c:\targets.txt'
