@@ -8,8 +8,8 @@ There are two options to provide the In Scope and Excluded IPs.
     -i In Scope IP file
     Usage: filterIPs.py -x <ExcludedIPsFile> -i <inScopeIPsFile>
 
-2. Manually input the location into the script's code. This is best if you don't want to
-  keep passing the parameters. Manually put the location in the variables: manualInScopeLocation and manualExcludeLocation
+2. Manually input the location into the script's code. This is best if you don't want to keep passing the parameters. 
+  Manually put the location in the variables: manualInScopeLocation and manualExcludeLocation
   Make sure to put quotes around the location and put double slashes in the path.
   For example instead of: manualInScopeLocation = "c:\location.txt"
   do: manualInScopeLocation = "c:\\location.txt"
