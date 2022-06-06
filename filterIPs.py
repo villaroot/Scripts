@@ -138,14 +138,14 @@ def main(argv):
    if approvedList:
        print("[+] Below are approved for testing")
        for item in approvedList:
-           print(item, end=" ")
+           print(item, end="\n")
    else:
        print("[-] No IPs were approved for testing!")
 
    if neitherList:
        print("[!] IPs were provided that are in neither the In Scope or Exluded Lists")
        for item in neitherList:
-           print(item, end=" ")
+           print(item, end="\n")
 
 if __name__ == "__main__":
    main(sys.argv[1:])
