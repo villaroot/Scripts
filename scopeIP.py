@@ -21,22 +21,22 @@ def expandCIDR(tempIP):
 
 def helpFunc():
     print("""
-filterIPs.py is used for checking if an IP is In Scope and not in the Excluded IP List.
+scopeIP.py is used for checking if an IP is In Scope and not in the Excluded IP List.
 It can take CIDR IPs and expands them to the full IP list. Meaning it's possible to provide a value such as 192.0.0.0/24 and the script will expand it to all IPs in the /24 subnet.
 
-    filterIPs.py
+    scopeIP.py
       -x Excluded IPs file
       -i In Scope IPs file
       -s single IP to check
       -f file of IPs to check
 
       Usage:
-        python3 filterIPs.py [-x FILE] [-i FILE] [-s STRING] [-f FILE]
+        python3 scopeIP.py [-x FILE] [-i FILE] [-s STRING] [-f FILE]
 
       Example:
-        python3 filterIPs.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -s 10.10.10.10
+        python3 scopeIP.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -s 10.10.10.10
 
-        python3 filterIPs.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -f 'c:\\targets.txt'
+        python3 scopeIP.py -x 'c:\excludedIP.txt' -i 'c:\inScopeIPs.txt' -f 'c:\\targets.txt'
         """)
 
 def main(argv):
@@ -52,8 +52,8 @@ def main(argv):
    deniedList = []
 
    singleCheck = ''
-   manualInScopeLocation = "" #option to manually put location MAKE SURE TO PUT TWO SLASHES
-   manualExcludeLocation = "" #option to manually put location MAKE SURE TO PUT TWO SLASHES
+   manualInScopeLocation = "" #manually put path in here, if using windows put TWO Slashes ex: c:\\path
+   manualExcludeLocation = "" #manually put path in here, if using windows put TWO Slashes ex: c:\\path
 
    try:
        opts, args = getopt.getopt(argv,"hi:x:s:f:",["ifile=","xfile="])
@@ -64,7 +64,6 @@ def main(argv):
    #go into each argument param
    for opt, arg in opts:
       if opt == '-h':
-         #print ('filterIPs.py -x <ExcludedIPsFile> -i <inScopeIPsFile> -s <targetIP>')
          helpFunc()
          sys.exit()
       elif opt in ("-i", "--ifile"):
@@ -85,7 +84,7 @@ def main(argv):
        print ("[+] Excluded file:", manualExcludeLocation)
    else:
        print ("[!] Excluded List was not provided")
-       print ("Usage: filterIPs.py -x <ExcludedIPsFile> -i <inScopeIPsFile> -s <targetIP>")
+       print ("Usage: scopeIP.py -x <ExcludedIPsFile> -i <inScopeIPsFile> -s <targetIP>")
 
    if not inScopeFile and manualInScopeLocation:
        with open(manualInScopeLocation) as tempFile:
@@ -93,7 +92,7 @@ def main(argv):
        print ("[+] In Scope file:", manualInScopeLocation)
    else:
        print ("[!] In Scope file was not provided")
-       print ("Usage: filterIPs.py -x <ExcludedIPsFile> -i <inScopeIPsFile> -s <targetIP>")
+       print ("Usage: scopeIP.py -x <ExcludedIPsFile> -i <inScopeIPsFile> -s <targetIP>")
 
    #Go through the excluded IP array and convert any CIDR /x into full IP list
    for tempIP in excludeFile:
